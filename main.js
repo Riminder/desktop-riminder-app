@@ -3,12 +3,16 @@ const app = electron.app
 const BrowserWindow = electron.BrowserWindow
 
 const url = require('url')
+const path = require('path')
 // const log = require('electron-log')
 
 let mainWindow
 
 function createWindow () {
-  mainWindow = new BrowserWindow({width: 1500, height: 1000})
+  mainWindow = new BrowserWindow({width: 1500,
+    height: 1000,
+    icon: path.join(__dirname, 'assets/icons/png/64x64.png'),
+    titleBarStyle: 'hidden'})
 
   mainWindow.loadURL(url.format({
     protocol: 'https:',
