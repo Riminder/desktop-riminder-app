@@ -1,15 +1,19 @@
 {
   "name": "riminder",
+  "productName": "RiminderApp",
   "version": "1.0.0",
   "description": "A desktop app for riminder",
   "main": "main.js",
   "scripts": {
     "start": "electron .",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "package-linux": "electron-packager . riminder --overwrite --asar=true --platform=linux --arch=x64 --icon=assets/icons/png/1024x1024.png --prune=true --out=release-builds",
+    "create-debian-installer": "electron-installer-debian --src release-builds/riminder-linux-x64 --arch amd64 --config inst_debian.json"
   },
   "author": "Riminder",
   "license": "ISC",
   "devDependencies": {
-    "electron": "^1.8.4"
+    "electron": "^1.8.4",
+    "electron-packager": "^12.0.1"
   }
 }
