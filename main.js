@@ -38,6 +38,17 @@ function getTeamFromUrl (url) {
   return RegExp.$1
 }
 
+function updateUserTeam (webContents) {
+  let currentUrl = url.parse(webContents.getURL())
+
+  let team = getTeamFromUrl(currentUrl)
+  if (team !== undefined && team !== 'www' && gUserData.team !== team) {
+    gUserData.team = team
+    gUserData.saveToFile(LINUX_USR_DATA_PATH)
+    log.info('runtime', 'Updated user\'s team')
+  }
+}
+
 function handleWindowReady () {
   mainWindow = new BrowserWindow({
     width: 1500,
@@ -63,14 +74,7 @@ function handleWindowReady () {
   })
 
   mainWindow.webContents.on('did-finish-load', () => {
-    let currentUrl = url.parse(mainWindow.webContents.getURL())
-
-    let team = getTeamFromUrl(currentUrl)
-    if (team !== undefined && team !== 'www' && gUserData.team !== team) {
-      gUserData.team = team
-      gUserData.saveToFile(LINUX_USR_DATA_PATH)
-      log.info('runtime', 'Updated user data')
-    }
+    updateUserTeam(mainWindow.webContents)
   })
 }
 
