@@ -79,7 +79,7 @@ function handleWindowReady () {
   let signurl = URL_SIGNIN_PAGE
   if (gUserData.team !== undefined) {
     signurl = getDirectLoginUrl(gUserData.team)
-    log.info('startup', 'Previous user\'s available')
+    log.info('startup', 'Previous user\'s datas available')
   }
 
   mainWindow.loadURL(signurl)
