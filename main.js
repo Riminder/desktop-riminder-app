@@ -9,12 +9,31 @@ const os = require('os')
 
 const UserData = require('./userData.js')
 
-const LINUX_USR_DATA_PATH = path.join('/home', os.userInfo().username, '.riminder/gUserData.json').toString()
+const LINUX_USR_DATA_PATH = path.join(os.homedir(), '.riminder/gUserData.json').toString()
+const MACOS_USR_DATA_PATH = path.join(os.homedir(), '.riminder/gUserData.json').toString()
+const WINDOWS_USR_DATA_PATH = path.join(os.homedir(), '.riminder/gUserData.json').toString()
+
+function selectUserDataPath () {
+  switch (process.platform) {
+    case 'linux':
+      return LINUX_USR_DATA_PATH
+    case 'darwin':
+      return MACOS_USR_DATA_PATH
+    case 'win32':
+      return WINDOWS_USR_DATA_PATH
+    default:
+      log.error('startup', 'OS not suported')
+      app.quit()
+  }
+}
+
+const USR_DATA_PATH = selectUserDataPath()
+
 const URL_SIGNIN_PAGE = url.format({protocol: 'https:', hostname: 'www.riminder.net', pathname: 'signin/team/'})
 
 let mainWindow
 
-let gUserData = UserData.loadFromfile(LINUX_USR_DATA_PATH)
+let gUserData = UserData.loadFromfile(USR_DATA_PATH)
 if (gUserData === undefined) {
   gUserData = new UserData()
 }
@@ -44,7 +63,7 @@ function updateUserTeam (webContents) {
   let team = getTeamFromUrl(currentUrl)
   if (team !== undefined && team !== 'www' && gUserData.team !== team) {
     gUserData.team = team
-    gUserData.saveToFile(LINUX_USR_DATA_PATH)
+    gUserData.saveToFile(USR_DATA_PATH)
     log.info('runtime', 'Updated user\'s team')
   }
 }
