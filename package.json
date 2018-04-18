@@ -8,12 +8,17 @@
     "start": "electron .",
     "test": "echo \"Error: no test specified\" && exit 1",
     "package-linux": "electron-packager . riminder --overwrite --asar=true --platform=linux --arch=x64 --icon=assets/icons/png/1024x1024.png --prune=true --out=release-builds",
-    "create-debian-installer": "electron-installer-debian --src release-builds/riminder-linux-x64 --arch amd64 --config inst_debian.json"
+    "create-deb-installer": "electron-installer-debian --src release-builds/riminder-linux-x64 --arch amd64 --config ./installers/debian/inst_debian.json",
+    "package-macos": "electron-packager . riminder --overwrite --platform=darwin --arch=x64 --icon=assets/icons/mac/icon.icns --prune=true --out=release-builds",
+    "create-mac-installer": "electron-installer-dmg ./release-builds/riminder-darwin-x64/riminder.app riminderApp --out=release-builds --overwrite --icon=assets/icons/mac/icon.icns",
+    "package-win": "electron-packager . riminder --overwrite --asar=true --platform=win32 --arch=ia32 --icon=assets/icons/win/icon.ico --prune=true --out=release-builds --version-string.CompanyName=Riminder --version-string.FileDescription=RiminderApp --version-string.ProductName=\"Riminder desktop app\"",
+    "create-win-installer": ""
   },
   "author": "Riminder",
   "license": "ISC",
   "devDependencies": {
     "electron": "^1.8.4",
+    "electron-installer-dmg": "^0.2.1",
     "electron-packager": "^12.0.1"
   }
 }
