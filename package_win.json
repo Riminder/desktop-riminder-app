@@ -1,0 +1,26 @@
+{
+  "name": "riminder",
+  "productName": "Riminder",
+  "version": "1.0.0",
+  "description": "A desktop app for riminder",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron .",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "package-win": "electron-packager . riminder --overwrite --asar=true --platform=win32 --arch=ia32 --icon=assets/icons/win/icon.ico --prune=true --out=release-builds --version-string.CompanyName=Riminder --version-string.FileDescription=RiminderApp --version-string.ProductName=\"Riminder desktop app\"",
+    "create-win-installer":  "node installers/windows/createinstaller.js"
+  },
+  "author": "Riminder",
+  "license": "ISC",
+  "devDependencies": {
+    "electron": "^1.8.4",
+    "electron-log": "^2.2.14",
+    "electron-packager": "^12.0.1",
+    "electron-winstaller": "^2.6.4",
+    "mkdir-recursive": "^0.4.0"
+  },
+  "dependencies": {
+    "electron-log": "^2.2.14",
+    "mkdir-recursive": "^0.4.0"
+  }
+}

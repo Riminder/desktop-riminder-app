@@ -14,11 +14,11 @@ function getInstallerConfig () {
   const outPath = path.join(rootPath, 'release-builds')
 
   return Promise.resolve({
-    appDirectory: path.join(outPath, 'riminder-win32-ia32/'),
+    appDirectory: path.join(outPath, 'riminder-app-win32-ia32/'),
     authors: 'Riminder',
     noMsi: true,
     outputDirectory: path.join(outPath, 'windows-installer'),
-    exe: 'riminder-app.exe',
+    exe: 'riminder.exe',
     setupExe: 'RiminderAppInstaller.exe',
     setupIcon: path.join(rootPath, 'assets', 'icons', 'win', 'icon.ico')
   })
