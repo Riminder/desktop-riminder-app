@@ -28,7 +28,7 @@ class UserData {
     })
   }
 
-  static getUserDataFromfile (filePath) {
+  static loadFromfile (filePath) {
     let userData = new UserData()
 
     try {
@@ -37,7 +37,7 @@ class UserData {
       Object.assign(userData, tmpuserData)
     } catch (e) {
       log.error('UserData', 'Cannot load user\'s datas from file: ' + e)
-      return new UserData()
+      return undefined
     }
     return userData
   }

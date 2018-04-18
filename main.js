@@ -13,7 +13,11 @@ const LINUX_USR_DATA_PATH = path.join('/home', os.userInfo().username, '.riminde
 const URL_SIGNIN_PAGE = url.format({protocol: 'https:', hostname: 'www.riminder.net', pathname: 'signin/team/'})
 
 let mainWindow
-let gUserData = UserData.getUserDataFromfile(LINUX_USR_DATA_PATH)
+
+let gUserData = UserData.loadFromfile(LINUX_USR_DATA_PATH)
+if (gUserData === undefined) {
+  gUserData = new UserData()
+}
 
 function getDirectLoginUrl (team) {
   let _hostname = team + '.riminder.net'
