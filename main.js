@@ -1,3 +1,4 @@
+// Handle squirel events for windows
 const setupEvents = require('./installers/windows/setupEvents')
 if (setupEvents.handleSquirrelEvent()) {
   return;

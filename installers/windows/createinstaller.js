@@ -1,3 +1,5 @@
+// Script that create installer
+
 const createWindowsInstaller = require('electron-winstaller').createWindowsInstaller
 const path = require('path')
 

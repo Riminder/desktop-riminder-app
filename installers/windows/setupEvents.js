@@ -1,3 +1,4 @@
+// Script that handle squirel events
 const electron = require('electron')
 const app = electron.app
 
