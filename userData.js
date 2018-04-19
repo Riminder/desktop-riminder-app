@@ -3,7 +3,7 @@ const fs = require('fs')
 const fx = require('mkdir-recursive')
 const log = require('electron-log')
 
-// UserData is the représentation of user's saved datas
+// UserData is the representation of user's saved datas
 class UserData {
   constructor () {
     this.team = undefined
@@ -31,7 +31,7 @@ class UserData {
     })
   }
 
-  // loadFromfile loads an UserData structure from the disk
+  // loadFromfile loads an UserData structure from a json file
   static loadFromfile (filePath) {
     let userData = new UserData()
 

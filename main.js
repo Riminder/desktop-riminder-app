@@ -15,24 +15,7 @@ const os = require('os')
 
 const UserData = require('./userData.js')
 
-// const LINUX_USR_DATA_PATH = path.join(os.homedir(), '.riminder/gUserData.json').toString()
-// const MACOS_USR_DATA_PATH = path.join(os.homedir(), '.riminder/gUserData.json').toString()
-// const WINDOWS_USR_DATA_PATH = path.join(os.homedir(), '.riminder/gUserData.json').toString()
-//
-// function selectUserDataPath () {
-//   switch (process.platform) {
-//     case 'linux':
-//       return LINUX_USR_DATA_PATH
-//     case 'darwin':
-//       return MACOS_USR_DATA_PATH
-//     case 'win32':
-//       return WINDOWS_USR_DATA_PATH
-//     default:
-//       log.error('startup', 'OS not suported')
-//       app.quit()
-//   }
-// }
-
+// USER_DATA_PATH is the path to user's datas file
 const USR_DATA_PATH = path.join(os.homedir(), '.riminder/gUserData.json').toString()
 
 // URL_SIGNIN_PAGE is the url to riminder's sigin page (for now: www.riminder.net/signin/team)
@@ -41,7 +24,7 @@ const URL_SIGNIN_PAGE = url.format({protocol: 'https:', hostname: 'www.riminder.
 let mainWindow
 
 // Load user's datas from USR_DATA_PATH file, if the file is invalid use an
-// empty UserData
+// empty UserData object
 let gUserData = UserData.loadFromfile(USR_DATA_PATH)
 if (gUserData === undefined) {
   gUserData = new UserData()
