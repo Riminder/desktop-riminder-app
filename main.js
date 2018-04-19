@@ -14,25 +14,25 @@ const os = require('os')
 
 const UserData = require('./userData.js')
 
-const LINUX_USR_DATA_PATH = path.join(os.homedir(), '.riminder/gUserData.json').toString()
-const MACOS_USR_DATA_PATH = path.join(os.homedir(), '.riminder/gUserData.json').toString()
-const WINDOWS_USR_DATA_PATH = path.join(os.homedir(), '.riminder/gUserData.json').toString()
+// const LINUX_USR_DATA_PATH = path.join(os.homedir(), '.riminder/gUserData.json').toString()
+// const MACOS_USR_DATA_PATH = path.join(os.homedir(), '.riminder/gUserData.json').toString()
+// const WINDOWS_USR_DATA_PATH = path.join(os.homedir(), '.riminder/gUserData.json').toString()
+//
+// function selectUserDataPath () {
+//   switch (process.platform) {
+//     case 'linux':
+//       return LINUX_USR_DATA_PATH
+//     case 'darwin':
+//       return MACOS_USR_DATA_PATH
+//     case 'win32':
+//       return WINDOWS_USR_DATA_PATH
+//     default:
+//       log.error('startup', 'OS not suported')
+//       app.quit()
+//   }
+// }
 
-function selectUserDataPath () {
-  switch (process.platform) {
-    case 'linux':
-      return LINUX_USR_DATA_PATH
-    case 'darwin':
-      return MACOS_USR_DATA_PATH
-    case 'win32':
-      return WINDOWS_USR_DATA_PATH
-    default:
-      log.error('startup', 'OS not suported')
-      app.quit()
-  }
-}
-
-const USR_DATA_PATH = selectUserDataPath()
+const USR_DATA_PATH = path.join(os.homedir(), '.riminder/gUserData.json').toString()
 
 const URL_SIGNIN_PAGE = url.format({protocol: 'https:', hostname: 'www.riminder.net', pathname: 'signin/team/'})
 

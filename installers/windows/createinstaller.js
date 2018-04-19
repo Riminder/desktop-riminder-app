@@ -16,7 +16,7 @@ function getInstallerConfig () {
   return Promise.resolve({
     appDirectory: path.join(outPath, 'riminder-win32-ia32/'),
     authors: 'Riminder',
-    noMsi: true,
+    noMsi: false,
     outputDirectory: path.join(outPath, 'windows-installer'),
     exe: 'riminder.exe',
     setupExe: 'RiminderAppInstaller.exe',
