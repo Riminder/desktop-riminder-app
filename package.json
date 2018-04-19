@@ -20,7 +20,6 @@
     "electron-installer-dmg": "^0.2.1",
     "electron-log": "^2.2.14",
     "electron-packager": "^12.0.1",
-    "electron-winstaller": "^2.6.4",
     "mkdir-recursive": "^0.4.0"
   },
   "dependencies": {
