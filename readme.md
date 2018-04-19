@@ -31,6 +31,6 @@ You can generate an installer for linux, windows and mac os using npm:
     * `npm run package-macos`
     * `npm run create-mac-installer`
 
-You can be found in `release-builds`, then you can now (hopefully) install the app !
+You can be found in `release-builds`, then you can (hopefully) install the app !
 
 *This app has been created using [electron](https://github.com/electron/electron)*
