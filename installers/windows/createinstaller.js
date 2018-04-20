@@ -2,20 +2,17 @@
 
 const createWindowsInstaller = require('electron-winstaller').createWindowsInstaller
 const commandLineArgs = require('command-line-args')
-const log = require('log')
+const log = require('electron-log')
 const path = require('path')
 
 let args = commandLineArgs([
-  {name: 'certPath', type: String},
-  {name: 'certPassw', type: String}
-])
+  {name: 'cert-path', type: String, defaultOption: true},
+  {name: 'cert-passw', type: String, defaultValue: '""'}], { camelCase: true })
 
-let signCertPath
-let signCertPassword
-if (process.argv.lenght >= 3) {
+
   signCertPath = args.certPath
   signCertPassword = args.certPassw
-}
+
 
 getInstallerConfig()
   .then(createWindowsInstaller)
