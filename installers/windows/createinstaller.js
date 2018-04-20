@@ -9,10 +9,8 @@ let args = commandLineArgs([
   {name: 'cert-path', type: String, defaultOption: true},
   {name: 'cert-passw', type: String, defaultValue: '""'}], { camelCase: true })
 
-
-  signCertPath = args.certPath
-  signCertPassword = args.certPassw
-
+let signCertPath = args.certPath
+let signCertPassword = args.certPassw
 
 getInstallerConfig()
   .then(createWindowsInstaller)
