@@ -8,6 +8,8 @@
     "start": "electron .",
     "test": "echo \"Error: no test specified\" && exit 1",
     "package-win": "electron-packager . riminder --overwrite --asar=true --platform=win32 --arch=ia32 --icon=assets/icons/win/icon.ico --prune=true --out=release-builds --version-string.CompanyName=Riminder --version-string.FileDescription=RiminderApp --version-string.ProductName=\"Riminder desktop app\"",
+    "sign-win-package": "node installers/windows/signExe.js",
+    "package-win-sign": "package-win && sign-win-package",
     "create-win-installer":  "node installers/windows/createinstaller.js"
   },
   "author": "Riminder",
@@ -17,7 +19,9 @@
     "electron-log": "^2.2.14",
     "electron-packager": "^12.0.1",
     "electron-winstaller": "^2.6.4",
-    "mkdir-recursive": "^0.4.0"
+    "mkdir-recursive": "^0.4.0",
+    "command-line-args": "^5.0.2",
+    "node-cmd": "^3.0.0"
   },
   "dependencies": {
     "electron-log": "^2.2.14",

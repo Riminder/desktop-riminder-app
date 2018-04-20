@@ -1,7 +1,21 @@
 // Script that create installer
 
 const createWindowsInstaller = require('electron-winstaller').createWindowsInstaller
+const commandLineArgs = require('command-line-args')
+const log = require('log')
 const path = require('path')
+
+let args = commandLineArgs([
+  {name: 'certPath', type: String},
+  {name: 'certPassw', type: String}
+])
+
+let signCertPath
+let signCertPassword
+if (process.argv.lenght >= 3) {
+  signCertPath = args.certPath
+  signCertPassword = args.certPassw
+}
 
 getInstallerConfig()
   .then(createWindowsInstaller)
@@ -15,7 +29,7 @@ function getInstallerConfig () {
   const rootPath = path.join('./')
   const outPath = path.join(rootPath, 'release-builds')
 
-  return Promise.resolve({
+  let option = {
     appDirectory: path.join(outPath, 'riminder-win32-ia32/'),
     authors: 'Riminder',
     noMsi: true,
@@ -23,5 +37,12 @@ function getInstallerConfig () {
     exe: 'riminder.exe',
     setupExe: 'RiminderAppInstaller.exe',
     setupIcon: path.join(rootPath, 'assets', 'icons', 'win', 'icon.ico')
-  })
+  }
+  if ((signCertPath === undefined || signCertPassword === undefined) && signCertPath !== signCertPassword) {
+    log.error('createinstaller-win', 'Certs datas are invalid, no signature')
+  }
+  if (signCertPath !== undefined && signCertPassword !== undefined) {
+    option.signWithParams = `/t http://timestamp.verisign.com/scripts/timstamp.dll /f "${path.resolve(signCertPath)}" /p ${signCertPassword}`
+  }
+  return Promise.resolve(option)
 }
