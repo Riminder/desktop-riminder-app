@@ -15,8 +15,15 @@ You can generate an installer for linux, windows and mac os using npm:
   * Execute:
     * `npm install`
     * `npm run package-win`
-    * `npm run create-win-installer`
+    * `npm run sign-win-package -- [args]` (to sign the app)
+    * `npm run create-win-installer -- [args]` (to sign the app)
 
+  * sign-win-package args:
+    * `--cert-path path/to/certificate` set certificate's path
+    * `--cert-passw 12345_is_a_good_password` set certificate's password
+  * create-win-installer args:
+    * `--cert-path path/to/certificate` set certificate's path
+    * `--cert-passw 12345_is_a_good_password` set certificate's password
 
 * Linux:
   * Execute:
