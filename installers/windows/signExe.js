@@ -10,10 +10,10 @@ let args = commandLineArgs([
 
 let signCertPath
 let signCertPassword
-let exeToSign
 
 signCertPath = args.certPath
 signCertPassword = args.certPassw
-exeToSign = args.exe
 
-cmd.run(`signtool sign /t http://timestamp.verisign.com/scripts/timstamp.dll /f "${path.resolve(signCertPath)}" /p ${signCertPassword} ${exeToSign}`)
+cmd.run(`
+  npm run package-win
+  signtool sign /t http://timestamp.verisign.com/scripts/timstamp.dll /f "${path.resolve(signCertPath)}" /p ${signCertPassword} release-builds/riminder-win32-ia32/riminder.exe`)

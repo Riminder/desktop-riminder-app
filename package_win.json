@@ -9,7 +9,6 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "package-win": "electron-packager . riminder --overwrite --asar=true --platform=win32 --arch=ia32 --icon=assets/icons/win/icon.ico --prune=true --out=release-builds --version-string.CompanyName=Riminder --version-string.FileDescription=RiminderApp --version-string.ProductName=\"Riminder desktop app\"",
     "sign-win-package": "node installers/windows/signExe.js",
-    "package-win-sign": "package-win && sign-win-package",
     "create-win-installer":  "node installers/windows/createinstaller.js"
   },
   "author": "Riminder",
