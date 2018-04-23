@@ -67,6 +67,9 @@ function handleWindowReady () {
     width: 1500,
     height: 1000,
     show: false,
+    webPreferences: {
+    plugins: true
+  },
     icon: path.join(__dirname, 'assets/icons/png/64x64.png'),
     titleBarStyle: 'hidden'})
 
