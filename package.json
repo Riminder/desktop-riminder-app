@@ -20,6 +20,7 @@
     "electron-installer-dmg": "^0.2.1",
     "electron-log": "^2.2.14",
     "electron-packager": "^12.0.1",
+    "electron-pdf-window": "^1.0.12",
     "mkdir-recursive": "^0.4.0"
   },
   "dependencies": {
