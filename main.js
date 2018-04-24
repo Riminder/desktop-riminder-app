@@ -8,10 +8,11 @@ const electron = require('electron')
 const app = electron.app
 const BrowserWindow = electron.BrowserWindow
 
+const os = require('os')
 const url = require('url')
 const path = require('path')
 const log = require('electron-log')
-const os = require('os')
+const PDFWindow = require('electron-pdf-window');
 
 const UserData = require('./userData.js')
 
@@ -74,10 +75,13 @@ function handleWindowReady () {
     height: 1000,
     show: false,
     webPreferences: {
-    plugins: true
+    plugins: true,
+    sandbox: true
   },
     icon: path.join(__dirname, 'assets/icons/png/64x64.png'),
     titleBarStyle: 'hidden'})
+
+  PDFWindow.addSupport(mainWindow)
 
   // try to autologin if there is a team otherwise load signin url
   let signurl = URL_SIGNIN_PAGE
@@ -86,6 +90,7 @@ function handleWindowReady () {
     log.info('startup', 'Previous user\'s datas available')
   }
 
+  // mainWindow.loadURL(url.format({protocol: 'https:', hostname: 'google.fr'}))
   mainWindow.loadURL(signurl)
 
   mainWindow.on('closed', () => {
