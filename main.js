@@ -1,21 +1,24 @@
-// Handle squirel events for windows
-const setupEvents = require('./installers/windows/setupEvents')
-if (setupEvents.handleSquirrelEvent()) {
-  return;
-}
+// // Handle squirel events for windows
+// const setupEvents = require('./installers/windows/setupEvents')
+// if (setupEvents.handleSquirrelEvent()) {
+//   return;
+// }
 
 const electron = require('electron')
 const app = electron.app
 const BrowserWindow = electron.BrowserWindow
+const contentTracing = electron.contentTracing
+const shell = electron.shell
 
 const os = require('os')
 const url = require('url')
 const path = require('path')
 const log = require('electron-log')
-const PDFWindow = require('electron-pdf-window');
+const PDFWindow = require('electron-pdf-window')
 
 const UserData = require('./userData.js')
 
+const INTERNAL_LINK_REGEXP = new RegExp(url.format({protocol: 'https:', hostname: 'www.riminder.net'}))
 // USER_DATA_PATH is the path to user's datas file
 const USR_DATA_PATH = path.join(os.homedir(), '.riminder/gUserData.json').toString()
 
@@ -23,6 +26,10 @@ const USR_DATA_PATH = path.join(os.homedir(), '.riminder/gUserData.json').toStri
 const URL_SIGNIN_PAGE = url.format({protocol: 'https:', hostname: 'www.riminder.net', pathname: 'signin/team/'})
 
 let mainWindow
+
+function isExternalUrl (url) {
+  return (!INTERNAL_LINK_REGEXP.test(url))
+}
 
 // Load user's datas from USR_DATA_PATH file, if the file is invalid use an
 // empty UserData object
@@ -70,14 +77,31 @@ function updateUserTeam (webContents) {
 // handleWindowReady is called when the main window is ready to load a page
 // it manage all app operations
 function handleWindowReady () {
+  // const options = {
+  //   categoryFilter: '*',
+  //   traceOptions: 'record-until-full,enable-sampling,trace-to-console'
+  // }
+  //
+  // contentTracing.startRecording(options, () => {
+  //   console.log('Tracing started')
+  //
+  //   setTimeout(() => {
+  //     let tracePath = './tracelog'
+  //     contentTracing.stopRecording(tracePath, (tracePath) => {
+  //       console.log('Tracing data recorded to ' + path)
+  //     })
+  //   }, 5000)
+  // })
   mainWindow = new BrowserWindow({
     width: 1500,
     height: 1000,
     show: false,
     webPreferences: {
-    plugins: true,
-    sandbox: true
-  },
+      preload: path.join(__dirname, 'preload.js'),
+      nodeIntegration: false,
+      plugins: true,
+      sandbox: true
+    },
     icon: path.join(__dirname, 'assets/icons/png/64x64.png'),
     titleBarStyle: 'hidden'})
 
@@ -89,7 +113,6 @@ function handleWindowReady () {
     signurl = getDirectLoginUrl(gUserData.team)
     log.info('startup', 'Previous user\'s datas available')
   }
-
   // mainWindow.loadURL(url.format({protocol: 'https:', hostname: 'google.fr'}))
   mainWindow.loadURL(signurl)
 
@@ -105,8 +128,19 @@ function handleWindowReady () {
   mainWindow.webContents.on('did-finish-load', () => {
     updateUserTeam(mainWindow.webContents)
   })
-}
 
+  // mainWindow.webContents.on('will-navigate', (event, url) => {
+  //   log.info('wiill navigate ->', url)
+  //   if (isExternalUrl(url)) {
+  //     shell.openExternal(url, true)
+  //     event.preventDefault()
+  //   }
+  // })
+  //
+  // mainWindow.webContents.on('new-window', (event, url) => {
+  //   event.preventDefault()
+  // })
+}
 app.on('ready', handleWindowReady)
 
 app.on('window-all-closed', () => {
