@@ -3,19 +3,52 @@
   "productName": "Riminder",
   "version": "1.0.0",
   "description": "A desktop app for riminder",
+  "homepage": "https://riminder.net",
+  "author": {
+    "name": "Alexandre.G",
+    "email": "contact@riminder.net"
+  },
   "main": "main.js",
   "scripts": {
     "start": "electron .",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "package-linux": "electron-packager . riminder --overwrite --asar=true --platform=linux --arch=x64 --icon=assets/icons/png/1024x1024.png --prune=true --out=release-builds",
-    "package-macos": "electron-packager . riminder --overwrite --platform=darwin --arch=x64 --icon=assets/icons/mac/icon.icns --prune=true --out=release-builds",
-    "create-deb-installer": "electron-installer-debian --src release-builds/riminder-linux-x64 --arch amd64 --config ./installers/debian/inst_debian.json",
-    "create-mac-installer": "electron-installer-dmg ./release-builds/riminder-darwin-x64/riminder.app riminderApp --out=release-builds --overwrite --icon=assets/icons/mac/icon.icns"
+    "pack": "build --dir",
+    "dist": "build"
+  },
+  "build" : {
+    "appId": "com.riminder.riminderApp",
+    "dmg": {
+      "contents": [
+        {
+        "x": 110,
+        "y": 150
+        },
+        {
+          "x": 240,
+          "y": 150,
+          "type": "link",
+          "path": "/app"
+        }
+      ]
+    },
+    "linux": {
+       "target": [
+         "deb"
+       ],
+       "icon": "build/linux",
+       "maintainer": "Riminder",
+       "category": "Office"
+     },
+     "win": {
+       "target": "squirrel",
+       "icon": "build/icon.ico"
+     }
   },
   "author": "Riminder",
   "license": "ISC",
   "devDependencies": {
     "electron": "^1.8.4",
+    "electron-builder": "^20.10.0",
     "electron-installer-debian": "^0.8.1",
     "electron-installer-dmg": "^0.2.1",
     "electron-log": "^2.2.14",
