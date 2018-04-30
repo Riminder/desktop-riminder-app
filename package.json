@@ -29,7 +29,8 @@
           "type": "link",
           "path": "/app"
         }
-      ]
+      ],
+      "icon": "build/mac/icon.icns"
     },
     "linux": {
        "target": [
