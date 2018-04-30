@@ -9,7 +9,7 @@ platform, you will never miss any of them.
 
 Commands:
 
-  * `npm dist`
+  * `npm run dist`
 
 
 Package the app:
@@ -17,12 +17,12 @@ Package the app:
 You can generate a package and an installer for macOS, windows and linux:
 
 * On macOS (.dmg):
-  * Execute: `npm dist`
+  * Execute: `npm run dist`
 * On windows (.appx for windows store)
   * Change certificate datas to match yours in `package.json` see [electron-builder documentation](https://www.electron.build/configuration/win) for more infos
-  * Execute `npm dist`
+  * Execute `npm run dist`
 * On linux (.deb):
-    * Execute: `npm dist`
+    * Execute: `npm run dist`
 
 Your packages and your installers can be found in `dist` directory, then you can (hopefully) install the app !
 
