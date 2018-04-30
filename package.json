@@ -40,17 +40,25 @@
        "category": "Office"
      },
      "win": {
-       "target": "squirrel",
-       "icon": "build/icon.ico"
-     }
+       "target": "appx",
+	   "certificateFile": "certs/alexandre.gotte@riminder.net.pfx",
+	   "certificatePassword": "riminder",
+       "icon": "build/win/icon.ico"
+     },
+	 "appx": {
+		   "publisher": "CN=Gotte Alexandre, O=Riminder, E=alexandre.gotte@riminder.net, C=FR",
+		   "displayName": "Riminder desktop app",
+		   "publisherDisplayName": "Riminder",
+		   "languages": [
+			"fr-fr"
+		   ]
+	 }
   },
   "author": "Riminder",
   "license": "ISC",
   "devDependencies": {
     "electron": "^1.8.4",
     "electron-builder": "^20.10.0",
-    "electron-installer-debian": "^0.8.1",
-    "electron-installer-dmg": "^0.2.1",
     "electron-log": "^2.2.14",
     "electron-packager": "^12.0.1",
     "mkdir-recursive": "^0.4.0"
