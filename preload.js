@@ -23,27 +23,32 @@ function getProfileOverlayIFrame (profileOverlay) {
   return elements[0]
 }
 
+function monitorOverlay () {
+  let profileOverlay = getProfileOverlay()
+  if (profileOverlay !== null) {
+    let ovIframe = getProfileOverlayIFrame(profileOverlay)
+    if (ovIframe !== null) {
+      let evt = new window.CustomEvent('overlayReady', {'detail': {iframe: ovIframe,
+        overlay: profileOverlay}})
+      document.body.dispatchEvent(evt)
+    }
+  }
+}
+
 let lastPdf = 'lel'
 function windowLoadedHandler () {
-  document.body.addEventListener('click', () => {
-    var profileOverlay = getProfileOverlay()
+  setInterval(monitorOverlay, 10)
+  document.body.addEventListener('overlayReady', (event) => {
+    var ovIframe = event.detail.iframe
+    if (ovIframe !== null) {
+      if (UrlUtils.isPdfLink(ovIframe.getAttribute('src')) &&
+        lastPdf !== ovIframe.getAttribute('src')) {
+        ipcR.send('dlDisabler')
 
-    if (profileOverlay !== null) {
-      setTimeout(() => {
-        var ovIframe = getProfileOverlayIFrame(profileOverlay)
-        if (ovIframe !== null) {
-          if (UrlUtils.isPdfLink(ovIframe.getAttribute('src')) &&
-            lastPdf !== ovIframe.getAttribute('src')) {
-            ipcR.send('dlDisabler')
-
-            let newSrcUrl = UrlUtils.genPdfViewerUrlSrc(ovIframe.getAttribute('src'))
-            ovIframe.setAttribute('src', newSrcUrl)
-            lastPdf = ovIframe.getAttribute('src')
-          }
-        }
-      }, 50)
-    } else {
-      lastPdf = 'lel'
+        let newSrcUrl = UrlUtils.genPdfViewerUrlSrc(ovIframe.getAttribute('src'))
+        ovIframe.setAttribute('src', newSrcUrl)
+        lastPdf = ovIframe.getAttribute('src')
+      }
     }
   })
 }
