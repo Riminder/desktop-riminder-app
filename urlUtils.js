@@ -31,6 +31,17 @@ class UrlUtils {
     }
     return url
   }
+
+  static genPdfViewerUrlSrc (url) {
+    let baseUrl = 'https://mozilla.github.io/pdf.js/web/viewer.html?file='
+    return baseUrl + encodeURIComponent(url)
+  }
+
+  static isPdfLink (link) {
+    let pdfregex = new RegExp(/.+pdf$/)
+
+    return pdfregex.test(link)
+  }
 }
 
 module.exports = UrlUtils

@@ -2,6 +2,8 @@
 const electron = require('electron')
 const ipcR = electron.ipcRenderer
 
+const UrlUtils = require('./urlUtils.js')
+
 window.onload = setTimeout(windowLoadedHandler, 50)
 
 function getProfileOverlay () {
@@ -21,27 +23,21 @@ function getProfileOverlayIFrame (profileOverlay) {
   return elements[0]
 }
 
-function isPdfLink (link) {
-  let pdfregex = new RegExp(/.+pdf$/)
-
-  return pdfregex.test(link)
-}
-
 let lastPdf = 'lel'
 function windowLoadedHandler () {
   document.body.addEventListener('click', () => {
     var profileOverlay = getProfileOverlay()
-    console.log('clicked yo ' + profileOverlay)
+
     if (profileOverlay !== null) {
       setTimeout(() => {
         var ovIframe = getProfileOverlayIFrame(profileOverlay)
         if (ovIframe !== null) {
-          if (isPdfLink(ovIframe.getAttribute('src')) && lastPdf !== ovIframe.getAttribute('src')) {
+          if (UrlUtils.isPdfLink(ovIframe.getAttribute('src')) &&
+            lastPdf !== ovIframe.getAttribute('src')) {
             ipcR.send('dlDisabler')
-            var newUrlSrc = 'https://mozilla.github.io/pdf.js/web/viewer.html?file='
-            newUrlSrc += encodeURIComponent(ovIframe.getAttribute('src'))
-            console.log('newUrlSrc!' + newUrlSrc)
-            ovIframe.setAttribute('src', newUrlSrc)
+
+            let newSrcUrl = UrlUtils.genPdfViewerUrlSrc(ovIframe.getAttribute('src'))
+            ovIframe.setAttribute('src', newSrcUrl)
             lastPdf = ovIframe.getAttribute('src')
           }
         }
