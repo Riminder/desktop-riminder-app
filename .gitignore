@@ -3,3 +3,4 @@ release-builds
 npm-debug.log
 dist
 tracelog
+yarn.lock

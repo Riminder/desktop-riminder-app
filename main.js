@@ -1,8 +1,8 @@
 const electron = require('electron')
 const app = electron.app
 const BrowserWindow = electron.BrowserWindow
-const contentTracing = electron.contentTracing
 const shell = electron.shell
+const ipcM = electron.ipcMain
 
 const os = require('os')
 const url = require('url')
@@ -71,21 +71,6 @@ function updateUserTeam (webContents) {
 // handleWindowReady is called when the main window is ready to load a page
 // it manage all app operations
 function handleWindowReady () {
-  // const options = {
-  //   categoryFilter: '*',
-  //   traceOptions: 'record-until-full,enable-sampling,trace-to-console'
-  // }
-  //
-  // contentTracing.startRecording(options, () => {
-  //   console.log('Tracing started')
-  //
-  //   setTimeout(() => {
-  //     let tracePath = './tracelog'
-  //     contentTracing.stopRecording(tracePath, (tracePath) => {
-  //       console.log('Tracing data recorded to ' + path)
-  //     })
-  //   }, 5000)
-  // })
   mainWindow = new BrowserWindow({
     width: 1500,
     height: 1000,
@@ -93,8 +78,7 @@ function handleWindowReady () {
     webPreferences: {
       preload: path.join(__dirname, 'preload.js'),
       nodeIntegration: false,
-      plugins: true,
-      sandbox: true
+      webSecurity: false
     },
     icon: path.join(__dirname, 'assets/icons/png/64x64.png'),
     titleBarStyle: 'hidden'})
@@ -123,17 +107,19 @@ function handleWindowReady () {
     updateUserTeam(mainWindow.webContents)
   })
 
-  // mainWindow.webContents.on('will-navigate', (event, url) => {
-  //   log.info('wiill navigate ->', url)
-  //   if (isExternalUrl(url)) {
-  //     shell.openExternal(url, true)
-  //     event.preventDefault()
-  //   }
-  // })
-  //
-  // mainWindow.webContents.on('new-window', (event, url) => {
-  //   event.preventDefault()
-  // })
+  mainWindow.webContents.on('will-navigate', (event, url) => {
+    log.info('wiill navigate ->', url)
+    if (isExternalUrl(url)) {
+      shell.openExternal(url, true)
+      event.preventDefault()
+    }
+  })
+
+  ipcM.on('dlDisabler', () => {
+    mainWindow.webContents.session.once('will-download', (event, item, webContents) => {
+      event.preventDefault()
+    })
+  })
 }
 app.on('ready', handleWindowReady)
 

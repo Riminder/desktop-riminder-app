@@ -1,4 +1,7 @@
 
+const electron = require('electron')
+const ipcR = electron.ipcRenderer
+
 window.onload = setTimeout(windowLoadedHandler, 50)
 
 function getProfileOverlay () {
@@ -18,29 +21,33 @@ function getProfileOverlayIFrame (profileOverlay) {
   return elements[0]
 }
 
-function generateProfileOverlayIFrame (parent) {
-  let iframe = document.createElement('iframe')
+function isPdfLink (link) {
+  let pdfregex = new RegExp(/.+pdf$/)
 
-  iframe.setAttribute('frameborder', '0')
-  // iframe.setAttribute('src', '')
+  return pdfregex.test(link)
 }
 
-/* <iframe frameborder="0" src="https://s3-eu-west-1.amazonaws.com/riminder-documents-eu/resume/4ddf07a67c01938c9a48bcbcc9c73db0599673cd.pdf" target="_parent" allowfullscreen="" height="140vh" name="" width="100%" style="position: relative; display: initial; height: 140vh; width: 100%;"></iframe> */
-
+let lastPdf = 'lel'
 function windowLoadedHandler () {
   document.body.addEventListener('click', () => {
-    let profileOverlay = getProfileOverlay()
+    var profileOverlay = getProfileOverlay()
     console.log('clicked yo ' + profileOverlay)
     if (profileOverlay !== null) {
       setTimeout(() => {
-        let ovIframe = getProfileOverlayIFrame(profileOverlay)
+        var ovIframe = getProfileOverlayIFrame(profileOverlay)
         if (ovIframe !== null) {
-          console.log('pimped!')
-          let ovParent = ovIframe.parentElement
-          ovIframe.remove()
-
+          if (isPdfLink(ovIframe.getAttribute('src')) && lastPdf !== ovIframe.getAttribute('src')) {
+            ipcR.send('dlDisabler')
+            var newUrlSrc = 'https://mozilla.github.io/pdf.js/web/viewer.html?file='
+            newUrlSrc += encodeURIComponent(ovIframe.getAttribute('src'))
+            console.log('newUrlSrc!' + newUrlSrc)
+            ovIframe.setAttribute('src', newUrlSrc)
+            lastPdf = ovIframe.getAttribute('src')
+          }
         }
       }, 50)
+    } else {
+      lastPdf = 'lel'
     }
   })
 }
