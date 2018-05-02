@@ -45,6 +45,21 @@ class UserData {
     }
     return userData
   }
+
+  updateTeamFromUrl (url) {
+    let regex = new RegExp(/^(.+)\.riminder\.net$/)
+
+    if (!regex.test(url.hostname)) {
+      return undefined
+    }
+
+    let newTeam = RegExp.$1
+    if (newTeam !== 'www' && newTeam !== this.team) {
+      this.team = newTeam
+      return this.team
+    }
+    return undefined
+  }
 }
 
 module.exports = UserData
