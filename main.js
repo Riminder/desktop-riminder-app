@@ -1,22 +1,8 @@
-<<<<<<< HEAD
 const electron = require('electron')
 const app = electron.app
 const BrowserWindow = electron.BrowserWindow
 const shell = electron.shell
 const ipcM = electron.ipcMain
-=======
-// // Handle squirel events for windows
-// const setupEvents = require('./installers/windows/setupEvents')
-// if (setupEvents.handleSquirrelEvent()) {
-//   return;
-// }
-
-const electron = require('electron')
-const app = electron.app
-const BrowserWindow = electron.BrowserWindow
-const contentTracing = electron.contentTracing
-const shell = electron.shell
->>>>>>> 08bf68f61cacb857b8fbe2a544cd3ed36d4f141b
 
 const os = require('os')
 const url = require('url')
