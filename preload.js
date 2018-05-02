@@ -27,9 +27,11 @@ function monitorOverlay () {
   let profileOverlay = getProfileOverlay()
   if (profileOverlay !== null) {
     let ovIframe = getProfileOverlayIFrame(profileOverlay)
+
     if (ovIframe !== null) {
       let evt = new window.CustomEvent('overlayReady', {'detail': {iframe: ovIframe,
         overlay: profileOverlay}})
+
       document.body.dispatchEvent(evt)
     }
   }
@@ -37,6 +39,8 @@ function monitorOverlay () {
 
 let lastPdf = 'lel'
 function windowLoadedHandler () {
+  // for the overlayReady event
+  // avoid the instant download and permit pdf support
   setInterval(monitorOverlay, 10)
   document.body.addEventListener('overlayReady', (event) => {
     var ovIframe = event.detail.iframe
