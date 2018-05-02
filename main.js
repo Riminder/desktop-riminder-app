@@ -1,8 +1,22 @@
+<<<<<<< HEAD
 const electron = require('electron')
 const app = electron.app
 const BrowserWindow = electron.BrowserWindow
 const shell = electron.shell
 const ipcM = electron.ipcMain
+=======
+// // Handle squirel events for windows
+// const setupEvents = require('./installers/windows/setupEvents')
+// if (setupEvents.handleSquirrelEvent()) {
+//   return;
+// }
+
+const electron = require('electron')
+const app = electron.app
+const BrowserWindow = electron.BrowserWindow
+const contentTracing = electron.contentTracing
+const shell = electron.shell
+>>>>>>> 08bf68f61cacb857b8fbe2a544cd3ed36d4f141b
 
 const os = require('os')
 const url = require('url')
@@ -71,6 +85,21 @@ function updateUserTeam (webContents) {
 // handleWindowReady is called when the main window is ready to load a page
 // it manage all app operations
 function handleWindowReady () {
+  // const options = {
+  //   categoryFilter: '*',
+  //   traceOptions: 'record-until-full,enable-sampling,trace-to-console'
+  // }
+  //
+  // contentTracing.startRecording(options, () => {
+  //   console.log('Tracing started')
+  //
+  //   setTimeout(() => {
+  //     let tracePath = './tracelog'
+  //     contentTracing.stopRecording(tracePath, (tracePath) => {
+  //       console.log('Tracing data recorded to ' + path)
+  //     })
+  //   }, 5000)
+  // })
   mainWindow = new BrowserWindow({
     width: 1500,
     height: 1000,
