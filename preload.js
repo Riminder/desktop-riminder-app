@@ -54,6 +54,8 @@ function monitorOverlay () {
         overlay: profileOverlay}})
       if (canFireEvent) {
         document.body.dispatchEvent(evt)
+        // to fire onAttachementOverlay event when the user want to see another
+        // pdf attachment (reset canFireEvent)
         putListenerOnAttachements(profileOverlay)
         canFireEvent = false
       }
@@ -65,8 +67,12 @@ let lastPdf = 'lel'
 function handleOnAttachementOverlayEvent (event) {
   var ovIframe = event.detail.iframe
   if (ovIframe !== null) {
+    // check if iframe's src is a pdf and if this is a diferent pdf from last call
+    // to avoid the untimely pdf reload
     if (RiminderUrlUtils.isPdfLink(ovIframe.getAttribute('src')) &&
       lastPdf !== ovIframe.getAttribute('src')) {
+      // send an event to main process
+      // to disrupt the pdf download when the user step on the page
       ipcR.send('dlDisabler')
 
       let newSrcUrl = RiminderUrlUtils.genPdfViewerUrlSrc(ovIframe.getAttribute('src'))
