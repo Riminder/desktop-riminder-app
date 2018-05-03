@@ -2,6 +2,7 @@ const path = require('path')
 const fs = require('fs')
 const fx = require('mkdir-recursive')
 const log = require('electron-log')
+const url = require('url');
 
 // UserData is the representation of user's saved datas
 class UserData {
@@ -9,15 +10,20 @@ class UserData {
     this.team = undefined
   }
 
+  static defaultSaveToFileCallback (err) {
+    if (err) {
+      log.error('UserData', err)
+    }
+  }
   // saveToFile saves this UserData instance to a file as a json
   // if the file already exist it will be truncated
-  saveToFile (filePath) {
+  saveToFile (filePath, callback = UserData.defaultSaveToFileCallback) {
     let usString = JSON.stringify(this)
 
     let fp = path.parse(filePath)
     fx.mkdir(fp.dir, (err) => {
       if (err) {
-        log.error('UserData', 'Cannot create user\'s data directory: ' + err)
+        callback(new Error('Cannot create user\'s data directory: ' + err))
         return
       }
 
@@ -25,8 +31,10 @@ class UserData {
         mode: fs.constants.S_IRWXU | fs.constants.S_IRWXG
       }, (err) => {
         if (err) {
-          log.error('UserData', 'Cannot file user\'s data file: ' + err)
+          callback(new Error('Cannot file user\'s data file: ' + err))
+          return
         }
+        callback(undefined)
       })
     })
   }
@@ -46,10 +54,13 @@ class UserData {
     return userData
   }
 
-  updateTeamFromUrl (url) {
+  updateTeamFromUrl (urlArg) {
+    if (typeof urlArg === typeof '') {
+      urlArg = url.parse(urlArg)
+    }
     let regex = new RegExp(/^(.+)\.riminder\.net$/)
 
-    if (!regex.test(url.hostname)) {
+    if (!regex.test(urlArg.hostname)) {
       return undefined
     }
 

@@ -30,8 +30,13 @@ function updateUserTeam (webContents) {
 
   let isUpdated = gUserData.updateTeamFromUrl(currentUrl)
   if (isUpdated) {
-    gUserData.saveToFile(USR_DATA_FILEPATH)
-    log.info('runtime', 'Updated user\'s team')
+    gUserData.saveToFile(USR_DATA_FILEPATH, (err) => {
+      if (err) {
+        log.error('UserData', err)
+        return
+      }
+      log.info('runtime', 'Updated user\'s team')
+    })
   }
 }
 

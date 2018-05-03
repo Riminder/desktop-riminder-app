@@ -4,24 +4,22 @@
   "version": "1.0.1",
   "description": "A desktop app for riminder",
   "homepage": "https://riminder.net",
-  "author": {
-    "name": "Alexandre.G",
-    "email": "contact@riminder.net"
-  },
+  "author": "Riminder",
   "main": "main.js",
   "scripts": {
     "start": "electron .",
     "test": "echo \"Error: no test specified\" && exit 1",
     "pack": "build --dir",
-    "dist": "build"
+    "dist": "build",
+    "test": "mocha"
   },
-  "build" : {
+  "build": {
     "appId": "com.riminder.riminderApp",
     "dmg": {
       "contents": [
         {
-        "x": 110,
-        "y": 150
+          "x": 110,
+          "y": 150
         },
         {
           "x": 240,
@@ -33,41 +31,42 @@
       "icon": "build/mac/icon.icns"
     },
     "linux": {
-       "target": [
-         "deb"
-       ],
-       "icon": "build/linux",
-       "maintainer": "Riminder",
-       "category": "Office"
-     },
-     "win": {
-       "target": "appx",
-	   "certificateFile": "certs/alexandre.gotte@riminder.net.pfx",
-	   "certificatePassword": "riminder",
-       "icon": "build/win/icon.ico"
-     },
-	 "appx": {
-		   "publisher": "CN=Gotte Alexandre, O=Riminder, E=alexandre.gotte@riminder.net, C=FR",
-		   "displayName": "Riminder desktop app",
-		   "publisherDisplayName": "Riminder",
-		   "languages": [
-			"fr-fr"
-		   ]
-	 }
+      "target": [
+        "deb"
+      ],
+      "icon": "build/linux",
+      "maintainer": "Riminder",
+      "category": "Office"
+    },
+    "win": {
+      "target": "appx",
+      "certificateFile": "certs/alexandre.gotte@riminder.net.pfx",
+      "certificatePassword": "riminder",
+      "icon": "build/win/icon.ico"
+    },
+    "appx": {
+      "publisher": "CN=Gotte Alexandre, O=Riminder, E=alexandre.gotte@riminder.net, C=FR",
+      "displayName": "Riminder desktop app",
+      "publisherDisplayName": "Riminder",
+      "languages": [
+        "fr-fr"
+      ]
+    }
   },
-  "author": "Riminder",
   "license": "ISC",
   "devDependencies": {
+    "better-assert": "^1.0.2",
     "electron": "^1.8.4",
     "electron-builder": "^20.10.0",
     "electron-log": "^2.2.14",
     "electron-packager": "^12.0.1",
     "electron-pdf-window": "^1.0.12",
-    "mkdir-recursive": "^0.4.0"
+    "mkdir-recursive": "^0.4.0",
+    "mocha": "^5.1.1"
   },
   "dependencies": {
-    "electron-pdf-window": "^1.0.12",
     "electron-log": "^2.2.14",
+    "electron-pdf-window": "^1.0.12",
     "jquery": "^3.3.1",
     "mkdir-recursive": "^0.4.0"
   }
