@@ -4,8 +4,8 @@ const URL_TO_SIGNIN_PAGE = url.format({protocol: 'https:', hostname: 'www.rimind
 // const REGEXP_INTERNAL_LINK = new RegExp(url.format({protocol: 'https:', hostname: 'www.riminder.net'}))
 const REGEXP_INTERNAL_LINK = new RegExp(/http[s]{0,1}:\/\/.+\.riminder\.net\/.+/)
 
-// UrlUtils gathers url related function
-class UrlUtils {
+// RiminderUrlUtils gathers url related function
+class RiminderUrlUtils {
   static isExternalUrl (url) {
     return (!REGEXP_INTERNAL_LINK.test(url))
   }
@@ -44,4 +44,4 @@ class UrlUtils {
   }
 }
 
-module.exports = UrlUtils
+module.exports = RiminderUrlUtils

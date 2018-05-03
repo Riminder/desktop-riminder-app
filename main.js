@@ -11,7 +11,7 @@ const log = require('electron-log')
 const PDFWindow = require('electron-pdf-window')
 
 const UserData = require('./userData.js')
-const UrlUtils = require('./urlUtils.js')
+const RiminderUrlUtils = require('./urlUtils.js')
 
 const USR_DATA_FILEPATH = path.join(os.homedir(), '.riminder/gUserData.json').toString()
 
@@ -54,7 +54,7 @@ function handleWindowReady () {
   // crash on riminder's dashboard
   PDFWindow.addSupport(mainWindow)
 
-  mainWindow.loadURL(UrlUtils.selectSigninUrl(gUserData.team))
+  mainWindow.loadURL(RiminderUrlUtils.selectSigninUrl(gUserData.team))
 
   mainWindow.on('closed', () => {
     mainWindow = null
@@ -71,7 +71,7 @@ function handleWindowReady () {
   })
 
   mainWindow.webContents.on('will-navigate', (event, url) => {
-    if (UrlUtils.isExternalUrl(url)) {
+    if (RiminderUrlUtils.isExternalUrl(url)) {
       shell.openExternal(url, true)
       event.preventDefault()
     }
