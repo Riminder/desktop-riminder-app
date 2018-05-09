@@ -42,13 +42,11 @@
      },
      "win": {
        "target": "appx",
-	   "certificateFile": "certs/alexandre.gotte@riminder.net.pfx",
-	   "certificatePassword": "riminder",
        "icon": "build/win/icon.ico"
      },
 	 "appx": {
-		   "publisher": "CN=Gotte Alexandre, O=Riminder, E=alexandre.gotte@riminder.net, C=FR",
-		   "displayName": "Riminder desktop app",
+		   "publisher": "CN=A395C044-044E-4CE8-B866-140C81E23AD1",
+		   "identityName": "Riminder.riminder",
 		   "publisherDisplayName": "Riminder",
 		   "languages": [
 			"fr-fr"
