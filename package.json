@@ -34,7 +34,8 @@
     },
     "linux": {
        "target": [
-         "deb"
+         "deb",
+         "snap"
        ],
        "icon": "build/linux",
        "maintainer": "Riminder",
@@ -51,7 +52,10 @@
 		   "languages": [
 			"fr-fr"
 		   ]
-	 }
+	 },
+   "snap": {
+
+   }
   },
   "author": "Riminder",
   "license": "ISC",
