@@ -4,10 +4,7 @@
   "version": "1.0.1",
   "description": "A desktop app for riminder",
   "homepage": "https://riminder.net",
-  "author": {
-    "name": "Alexandre.G",
-    "email": "contact@riminder.net"
-  },
+  "author": "Riminder",
   "main": "main.js",
   "scripts": {
     "start": "electron .",
@@ -15,13 +12,13 @@
     "pack": "build --dir",
     "dist": "build"
   },
-  "build" : {
+  "build": {
     "appId": "com.riminder.riminderApp",
     "dmg": {
       "contents": [
         {
-        "x": 110,
-        "y": 150
+          "x": 110,
+          "y": 150
         },
         {
           "x": 240,
@@ -33,29 +30,28 @@
       "icon": "build/mac/icon.icns"
     },
     "linux": {
-       "target": [
-         "deb"
-       ],
-       "icon": "build/linux",
-       "maintainer": "Riminder",
-       "category": "Office"
-     },
-     "win": {
-       "target": "appx",
-	   "certificateFile": "certs/alexandre.gotte@riminder.net.pfx",
-	   "certificatePassword": "riminder",
-       "icon": "build/win/icon.ico"
-     },
-	 "appx": {
-		   "publisher": "CN=Gotte Alexandre, O=Riminder, E=alexandre.gotte@riminder.net, C=FR",
-		   "displayName": "Riminder desktop app",
-		   "publisherDisplayName": "Riminder",
-		   "languages": [
-			"fr-fr"
-		   ]
-	 }
+      "target": [
+        "deb"
+      ],
+      "icon": "build/linux",
+      "maintainer": "Riminder",
+      "category": "Office"
+    },
+    "win": {
+      "target": "appx",
+      "certificateFile": "certs/alexandre.gotte@riminder.net.pfx",
+      "certificatePassword": "riminder",
+      "icon": "build/win/icon.ico"
+    },
+    "appx": {
+      "publisher": "CN=Gotte Alexandre, O=Riminder, E=alexandre.gotte@riminder.net, C=FR",
+      "displayName": "Riminder desktop app",
+      "publisherDisplayName": "Riminder",
+      "languages": [
+        "fr-fr"
+      ]
+    }
   },
-  "author": "Riminder",
   "license": "ISC",
   "devDependencies": {
     "electron": "^1.8.4",
