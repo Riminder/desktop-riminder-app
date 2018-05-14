@@ -6,7 +6,7 @@
 # Check that the .p12 file is in the correct location.
 CERT_PATH=$1
 if [ ! -f $CERT_PATH ]; then
-  echo "Can't find the .p12 file at $CERT_PATH"
+  echo "Can't find the .p12 file at $CERT_PATH"; exit 1
 fi
 
 # Get the user's password.
@@ -23,4 +23,4 @@ export CSC_KEY_PASSWORD=$answer
 echo "... Exported ENV variables."
 
 # Now run the build process.
-cd npm run dist;
+npm run dist

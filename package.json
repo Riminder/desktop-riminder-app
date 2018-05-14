@@ -14,7 +14,7 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "pack": "build --dir",
     "dist": "build",
-    "macSetUp": "bash scripts/releaseMac.sh"
+    "releaseMac": "bash scripts/releaseMac.sh"
   },
   "build" : {
     "appId": "com.riminder.riminderApp",
