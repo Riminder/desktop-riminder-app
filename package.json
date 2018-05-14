@@ -21,6 +21,7 @@
     "mac": {
       "category": "public.app-category.business",
       "target": [
+          "dmg",
           "mas",
           "mas-dev"
       ],
