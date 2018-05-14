@@ -14,5 +14,9 @@
     <string>9G6GA5J934</string>
     <key>CFBundleIconFile</key>
     <string>build/icon.icns</string>
+    <key>com.apple.developer.team-identifier</key>
+    <string>9G6GA5J934</string>
+    <key>com.apple.application-identifier</key>
+    <string>9G6GA5J934.riminder</string>
 </dict>
 </plist>
