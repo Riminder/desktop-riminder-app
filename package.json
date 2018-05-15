@@ -21,9 +21,7 @@
     "mac": {
       "category": "public.app-category.business",
       "target": [
-          "dmg",
           "mas",
-          "mas-dev"
       ],
       "icon": "build/mac/icon.icns",
       "entitlements": "build/mac/entitlements.mac.plist",
