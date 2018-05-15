@@ -5,3 +5,4 @@ dist
 tracelog
 yarn.lock
 winUWPAsset/
+rejects/
