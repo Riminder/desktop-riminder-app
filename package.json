@@ -21,12 +21,15 @@
     "mac": {
       "category": "public.app-category.business",
       "target": [
-          "mas",
+          "mas"
       ],
       "icon": "build/mac/icon.icns",
       "entitlements": "build/mac/entitlements.mac.plist",
       "type": "distribution",
-      "provisioningProfile" : "build/mac/dappprofile.provisionprofile"
+      "provisioningProfile" : "build/mac/dappprofile.provisionprofile",
+      "extendInfo": {
+        "CFBundleExecutable": "riminder"
+      },
     },
     "mas": {
       "entitlements": "build/mac/entitlements.mas.plist"
