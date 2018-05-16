@@ -25,7 +25,8 @@
       ],
       "icon": "build/mac/icon.icns",
       "entitlements": "build/mac/entitlements.mac.plist",
-      "type": "distribution"
+      "type": "distribution",
+      "provisioningProfile" : "build/mac/dappprofile.provisionprofile"
     },
     "mas": {
       "entitlements": "build/mac/entitlements.mas.plist"
