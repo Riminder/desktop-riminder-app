@@ -25,11 +25,7 @@
       ],
       "icon": "build/mac/icon.icns",
       "entitlements": "build/mac/entitlements.mac.plist",
-      "type": "distribution",
-      "provisioningProfile" : "build/mac/dappprofile.provisionprofile",
-      "extendInfo": {
-        "CFBundleExecutable": "Riminder"
-      },
+      "type": "distribution"
     },
     "mas": {
       "entitlements": "build/mac/entitlements.mas.plist"
