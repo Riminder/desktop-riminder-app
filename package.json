@@ -28,7 +28,7 @@
       "type": "distribution",
       "provisioningProfile" : "build/mac/dappprofile.provisionprofile",
       "extendInfo": {
-        "CFBundleExecutable": "riminder"
+        "CFBundleExecutable": "Riminder"
       },
     },
     "mas": {
