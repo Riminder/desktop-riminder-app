@@ -5,7 +5,7 @@
     <key>com.apple.security.app-sandbox</key>
     <true/>
     <key>com.apple.security.application-groups</key>
-    <string>9G6GA5J934.riminder</string>
+    <string>9G6GA5J934.net.riminder.riminder</string>
     <key>com.apple.security.files.user-selected.read-write</key>
     <true/>
     <key>com.apple.security.network.client</key>
