@@ -17,12 +17,11 @@
     "releaseMac": "bash scripts/releaseMac.sh"
   },
   "build" : {
-    "appId": "com.riminder.riminderApp",
+    "appId": "net.riminder.riminder",
     "mac": {
       "category": "public.app-category.business",
       "target": [
-          "mas",
-          "dmg"
+          "mas"
       ],
       "icon": "build/mac/icon.icns",
       "entitlements": "build/mac/entitlements.mac.plist",
