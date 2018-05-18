@@ -47,8 +47,7 @@ function handleWindowReady () {
       nodeIntegration: false,
       webSecurity: false
     },
-    icon: path.join(__dirname, 'build/linux/64x64.png'),
-    titleBarStyle: 'hidden'})
+    icon: path.join(__dirname, 'build/linux/64x64.png')})
 
   // Usage of electron-pdf-window cause native pdf handling (plugin)
   // crash on riminder's dashboard
