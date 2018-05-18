@@ -70,7 +70,7 @@ class MenuUtils {
   static generateDefaultMenuTemplate () {
     let menuTemplate = DEFAULT_BASE_MENU_TEMPLATE
     if (process.platform === 'darwin') {
-      this.menuTemplate.unshift(DEFAULT_MAC_TEMPLATE_ADDING)
+      menuTemplate.unshift(DEFAULT_MAC_TEMPLATE_ADDING)
     }
     return menuTemplate
   }
