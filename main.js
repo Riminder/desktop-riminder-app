@@ -12,6 +12,7 @@ const PDFWindow = require('electron-pdf-window')
 
 const UserData = require('./userData.js')
 const RiminderUrlUtils = require('./urlUtils.js')
+const MenuUtils = require('./menuUtils.js')
 
 const USR_DATA_FILEPATH = path.join(os.homedir(), '.riminder/gUserData.json').toString()
 
@@ -49,6 +50,7 @@ function handleWindowReady () {
     },
     icon: path.join(__dirname, 'build/linux/64x64.png')})
 
+  MenuUtils.applyDefaultMenu()
   // Usage of electron-pdf-window cause native pdf handling (plugin)
   // crash on riminder's dashboard
   PDFWindow.addSupport(mainWindow)
