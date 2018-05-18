@@ -4,6 +4,8 @@ const Menu = electron.Menu
 const app = electron.app
 const shell = electron.shell
 
+let windowReopener
+
 const DEFAULT_BASE_MENU_TEMPLATE = [
   {
     label: 'Edit',
@@ -34,9 +36,20 @@ const DEFAULT_BASE_MENU_TEMPLATE = [
     ]
   },
   {
+    label: 'history',
+    submenu: [
+      {label: 'back',
+        click (menuItem, browserWindow, event) { browserWindow.webContents.goBack() }},
+      {label: 'forward',
+        click (menuItem, browserWindow, event) { browserWindow.webContents.goForward() }}
+    ]
+  },
+  {
     role: 'window',
     submenu: [
       {role: 'minimize'},
+      {label: app.getName(),
+        click () { windowReopener ? windowReopener() : windowReopener = null }},
       {role: 'close'}
     ]
   },
@@ -89,6 +102,10 @@ class MenuUtils {
     let menu = MenuUtils.generateMenu(menuTemplate)
 
     MenuUtils.applyMenu(menu)
+  }
+
+  static setWindowReOpener (func) {
+    windowReopener = func
   }
 }
 

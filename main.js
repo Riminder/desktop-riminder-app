@@ -36,6 +36,11 @@ function updateUserTeam (webContents) {
   }
 }
 
+function reopenWindow () {
+  if (!mainWindow) {
+    handleWindowReady()
+  }
+}
 // handleWindowReady is called when the main window is ready to load a page
 // it manage all app operations
 function handleWindowReady () {
@@ -50,6 +55,7 @@ function handleWindowReady () {
     },
     icon: path.join(__dirname, 'build/linux/64x64.png')})
 
+  MenuUtils.setWindowReOpener(reopenWindow)
   MenuUtils.applyDefaultMenu()
   // Usage of electron-pdf-window cause native pdf handling (plugin)
   // crash on riminder's dashboard
