@@ -7,17 +7,14 @@ ____
 Riminder's desktop-app will allow you to keep in touch with every talent on our
 platform, you will never miss any of them.
 
-Commands:
-
-  * `npm run dist`
-
+You should use [yarn](https://yarnpkg.com/en/) for dependencies management
 
 Package the app:
 
 You can generate a package and an installer for macOS, windows and linux:
 
 * On macOS (.dmg):
-  * Execute: `npm run dist`
+  * Execute: `npm run releaseMac -- path/to/certificate.p12`
 * On windows (.appx for windows store)
   * Change certificate datas to match yours in `package.json` see [electron-builder documentation](https://www.electron.build/configuration/win) for more infos
   * Execute `npm run dist`
