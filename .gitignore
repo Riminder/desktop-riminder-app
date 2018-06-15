@@ -6,3 +6,4 @@ tracelog
 yarn.lock
 winUWPAsset/
 rejects/
+.DS_Store
