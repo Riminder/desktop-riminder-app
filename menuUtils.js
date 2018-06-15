@@ -48,9 +48,9 @@ const DEFAULT_BASE_MENU_TEMPLATE = [
     role: 'window',
     submenu: [
       {role: 'minimize'},
+      {role: 'close'},
       {label: app.getName(),
-        click () { windowReopener ? windowReopener() : windowReopener = null }},
-      {role: 'close'}
+        click () { windowReopener ? windowReopener() : windowReopener = null }}
     ]
   },
   {
