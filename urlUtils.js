@@ -2,7 +2,8 @@ const url = require('url')
 
 const URL_TO_SIGNIN_PAGE = url.format({protocol: 'https:', hostname: 'www.riminder.net', pathname: 'signin/team/'})
 // const REGEXP_INTERNAL_LINK = new RegExp(url.format({protocol: 'https:', hostname: 'www.riminder.net'}))
-const REGEXP_INTERNAL_LINK = new RegExp(/http[s]{0,1}:\/\/.+\.riminder\.net\/.+/)
+const REGEXP_INTERNAL_LINK = new RegExp(/http[s]{0,1}:\/\/.+\.riminder\.net\/.*/)
+const REGEXP_IS_PDF_LINK = new RegExp(/.+pdf$/)
 
 // RiminderUrlUtils gathers url related function
 class RiminderUrlUtils {
@@ -38,7 +39,7 @@ class RiminderUrlUtils {
   }
 
   static isPdfLink (link) {
-    let pdfregex = new RegExp(/.+pdf$/)
+    let pdfregex = REGEXP_IS_PDF_LINK
 
     return pdfregex.test(link)
   }

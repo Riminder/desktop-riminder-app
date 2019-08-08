@@ -4,3 +4,6 @@ npm-debug.log
 dist
 tracelog
 yarn.lock
+winUWPAsset/
+rejects/
+.DS_Store
