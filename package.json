@@ -11,7 +11,8 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "pack": "build --dir",
     "dist": "build",
-    "releaseMac": "bash scripts/releaseMac.sh"
+    "releaseMac": "bash scripts/releaseMac.sh",
+    "test": "mocha"
   },
   "build": {
     "appId": "net.riminder.riminder",
@@ -52,16 +53,18 @@
   },
   "license": "ISC",
   "devDependencies": {
+    "better-assert": "^1.0.2",
     "electron": "^1.8.4",
     "electron-builder": "^20.10.0",
     "electron-log": "^2.2.14",
     "electron-packager": "^12.0.1",
     "electron-pdf-window": "^1.0.12",
-    "mkdir-recursive": "^0.4.0"
+    "mkdir-recursive": "^0.4.0",
+    "mocha": "^5.1.1"
   },
   "dependencies": {
-    "electron-pdf-window": "^1.0.12",
     "electron-log": "^2.2.14",
+    "electron-pdf-window": "^1.0.12",
     "jquery": "^3.3.1",
     "mkdir-recursive": "^0.4.0"
   }
