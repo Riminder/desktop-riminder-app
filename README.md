@@ -6,6 +6,8 @@ This app has been created using [electron](https://github.com/electron/electron)
 
 ## Code
 
+electron-pdf-window v1.0.12 can't handle links with paramatres. v1.0.10 is mandated in the dependencies.
+
 You should use [yarn](https://yarnpkg.com/en/) for dependencies management.
 
 Install the dependencies with:
