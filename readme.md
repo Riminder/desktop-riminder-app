@@ -20,8 +20,7 @@ You can generate a package and an installer for macOS, windows and linux:
   * Execute `npm run dist`
 * On linux (.deb):
     * Execute: `
-    ``` 
-    bash
+    ```bash
     npm install
     npm run dist
     ```   
