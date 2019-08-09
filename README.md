@@ -31,3 +31,7 @@ You can generate a package and an installer for macOS, windows and linux:
   ```
 
 Your packages and your installers can be found in `dist` directory, then you can install the app using gdebi or snap!
+you can also directly run it with :
+```bash
+npm start
+```
